@@ -1,5 +1,5 @@
 # Regular Cape Counter
-A plugin which counts regular capes not included in "Teams" plugin (including clan cloaks) and displays them on an overlay
+A plugin which counts regular capes (and clan cloaks) and displays them on an overlay
 
 ![alt text](https://i.imgur.com/XoZkUu8.png)
 

@@ -2,8 +2,6 @@ package com.CapeCounterPlugin;
 
 import lombok.Getter;
 
-import java.util.stream.Stream;
-
 public enum Capes {
 	RED_CAPE(1007),
 	BLACK_CAPE(1019),

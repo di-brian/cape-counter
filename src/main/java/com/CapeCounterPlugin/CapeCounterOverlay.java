@@ -2,28 +2,27 @@ package com.CapeCounterPlugin;
 
 import com.google.inject.Inject;
 import net.runelite.client.game.ItemManager;
-import net.runelite.client.ui.overlay.*;
+import net.runelite.client.ui.overlay.OverlayMenuEntry;
+import net.runelite.client.ui.overlay.OverlayPanel;
+import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.components.ComponentOrientation;
 import net.runelite.client.ui.overlay.components.ImageComponent;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.Stream;
 
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 
-public class CapeCounterOverlay extends OverlayPanel{
+public class CapeCounterOverlay extends OverlayPanel {
 
 	private final CapeCounterPlugin plugin;
 	private final CapeCounterConfig config;
 	private final ItemManager manager;
 
 	@Inject
-	private CapeCounterOverlay(CapeCounterPlugin plugin, CapeCounterConfig config, ItemManager manager)
-	{
+	private CapeCounterOverlay(CapeCounterPlugin plugin, CapeCounterConfig config, ItemManager manager) {
 		super(plugin);
 		setPosition(OverlayPosition.TOP_LEFT);
 		setPriority(OverlayPriority.LOW);
@@ -36,13 +35,11 @@ public class CapeCounterOverlay extends OverlayPanel{
 	}
 
 	@Override
-	public Dimension render(Graphics2D graphics)
-	{
+	public Dimension render(Graphics2D graphics) {
 
 		for (Capes cape : Capes.values()) {
-
-			int count = Collections.frequency(plugin.playerCapes.values(),cape.getItemId());
-			if(count >= config.getMinimumCapeCount()) {
+			int count = Collections.frequency(plugin.getPlayerCapes().values(), cape.getItemId());
+			if (count >= config.getMinimumCapeCount()) {
 				panelComponent.getChildren().add(new ImageComponent(manager.getImage(cape.getItemId(), count, true)));
 			}
 		}
